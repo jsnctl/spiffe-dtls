@@ -66,9 +66,9 @@ just spire-down
 ```
 
 ```
-server: listening on 127.0.0.1:4444 (DTLS/SPIFFE)
-client: our SPIFFE ID: spiffe://example.org/workload
-server: peer=spiffe://example.org/workload msg="hello from SPIFFE-over-DTLS"
-client: server response: echo: hello from SPIFFE-over-DTLS
+2026/03/26 16:18:16 listening on 127.0.0.1:4444 (DTLS/SPIFFE)
+2026/03/26 16:18:16 our SPIFFE ID: spiffe://example.org/workload
+2026/03/26 16:18:16 peer=spiffe://example.org/workload msg="hello from SPIFFE-over-DTLS"
+2026/03/26 16:18:16 server response: echo: hello from SPIFFE-over-DTLS
 ```
 
