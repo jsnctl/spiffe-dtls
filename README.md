@@ -19,6 +19,35 @@ Both return a [`pion/dtls`](https://github.com/pion/dtls) config wired up to:
 
 The result is mutual DTLS 1.2 where both peers are identified by their SPIFFE ID, backed by a live SPIRE agent.
 
+## Schematic
+
+```mermaid
+flowchart LR
+    subgraph spire ["🔐 SPIRE"]
+        direction TB
+        S["🖥️ spire-server"]
+        A["🛂 spire-agent"]
+        S ----> A
+    end
+
+    subgraph workloads ["📦 Workloads"]
+        direction TB
+        C["💻 example/client"]
+        W["🌐 example/server"]
+    end
+
+    A -- "Workload API\nunix socket" --> C
+    A -- "Workload API\nunix socket" --> W
+    C -- "mTLS · DTLS 1.2\nudp://127.0.0.1:4444" --> W
+
+    style spire fill:#f5f0ff,stroke:#7c3aed,color:#1e1b4b
+    style workloads fill:#ecfeff,stroke:#0891b2,color:#083344
+    style S fill:#ede9fe,stroke:#7c3aed,color:#1e1b4b
+    style A fill:#ede9fe,stroke:#7c3aed,color:#1e1b4b
+    style C fill:#cffafe,stroke:#0891b2,color:#083344
+    style W fill:#cffafe,stroke:#0891b2,color:#083344
+```
+
 ## Running the example
 
 The `example/` directory contains a paired server and client. The server accepts a single datagram, logs the sender's SPIFFE ID, and echoes the message back. The client sends `"hello from SPIFFE-over-DTLS"` and prints the response.
