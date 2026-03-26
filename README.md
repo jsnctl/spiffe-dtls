@@ -13,9 +13,9 @@ dtlssvid.MTLSServerConfig(svid, bundle, authorizer) (*dtls.Config, error)
 
 Both return a [`pion/dtls`](https://github.com/pion/dtls) config wired up to:
 
-- **Fetch a fresh X.509-SVID** from the SPIFFE Workload API for every handshake,
-- **Verify the peer's certificate chain** using `x509svid.ParseAndVerify` against the trust bundle, replacing `pion`'s built-in TLS verification,
-- **Apply a SPIFFE authorizer** (e.g. `AuthorizeAny`, `AuthorizeID`, `AuthorizeMemberOf`) after chain verification, so identity policy is enforced at the application layer,
+- Fetch a X.509-SVID from the SPIFFE Workload API for every handshake,
+- Verify the peer's certificate chain using `x509svid.ParseAndVerify` against the trust bundle, replacing `pion`'s built-in TLS verification,
+- Apply a SPIFFE authorizer (e.g. `AuthorizeAny`, `AuthorizeID`, `AuthorizeMemberOf`) after chain verification, so identity policy is enforced at the application layer,
 
 The result is mutual DTLS 1.2 where both peers are identified by their SPIFFE ID, backed by a live SPIRE agent.
 
@@ -25,8 +25,7 @@ The `example/` directory contains a paired server and client. The server accepts
 
 ### Prerequisites
 
-- [just](https://github.com/casey/just)
-- [Go 1.21+](https://go.dev/dl/)
+- [Just](https://github.com/casey/just)
 
 ### Usage
 
