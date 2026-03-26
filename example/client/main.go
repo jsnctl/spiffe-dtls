@@ -1,15 +1,3 @@
-// Client demonstrates a DTLS client that authenticates to a server using its
-// SPIFFE X.509-SVID.
-//
-// Prerequisites: a SPIRE agent must be running and its Workload API socket
-// must be reachable at the default path (or set SPIFFE_ENDPOINT_SOCKET).
-//
-// Run after example/server. The client sends a single datagram, prints the
-// echoed response, then exits.
-//
-// Usage:
-//
-//	go run ./example/client
 package main
 
 import (
@@ -18,8 +6,8 @@ import (
 	"log"
 	"net"
 
-	"github.com/pion/dtls/v2"
 	dtlssvid "github.com/jsnctl/spiffe-dtls"
+	"github.com/pion/dtls/v2"
 	"github.com/spiffe/go-spiffe/v2/spiffetls/tlsconfig"
 	"github.com/spiffe/go-spiffe/v2/workloadapi"
 )
@@ -35,7 +23,6 @@ func main() {
 	}
 	defer source.Close()
 
-	// Print our own SVID so the demo output is self-explanatory.
 	svid, err := source.GetX509SVID()
 	if err != nil {
 		log.Fatalf("getting own SVID: %v", err)
